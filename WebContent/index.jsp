@@ -14,11 +14,11 @@
 	<script src="game/views/GameBoardMapView.js"></script>
 	<script src="game/views/GameBoardTileView.js"></script>		
 	<script src="game/views/GameContainer.js"></script>
-	<script src="game/GameLoadingController.js"></script>
-	<script src="game/GamePlayingController.js"></script>
-	<script src="game/GameEditingController.js"></script>
-	<script src="game/GameOverController.js"></script>
-	<script src="game/GameController.js"></script>
+	<script src="game/controllers/GameLoadingController.js"></script>
+	<script src="game/controllers/GamePlayingController.js"></script>
+	<script src="game/controllers/GameEditingController.js"></script>
+	<script src="game/controllers/GameOverController.js"></script>
+	<script src="game/controllers/GameController.js"></script>
 	<script src="game/App.js"></script>
 	
 	<body>
