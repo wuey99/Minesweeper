@@ -14,11 +14,13 @@ Signal.prototype.cleanup = function() {
 
 //------------------------------------------------------------------------------------------
 Signal.prototype.addListener = function(listener) {
-	this.listeners.put(listener, 0);
+	this.listeners.set(listener, 0);
 },
 
 //------------------------------------------------------------------------------------------
 Signal.prototype.fireSignal = function() {
+	var _args = arguments;
+	
 	switch (arguments.length) {
 		case 0:
 			this.listeners.forEach (
@@ -28,20 +30,20 @@ Signal.prototype.fireSignal = function() {
 			);
 					
 			break;
-					
+
 		case 1:
 			this.listeners.forEach (
 				function(listener) {
-					listener(arguments[0]);
+					listener(_args[0]);
 				}
 			);
 					
 			break;
-					
+		
 		default:
 			this.listeners.forEach (
 				function(listener) {
-					listener(arguments);
+					listener.apply(null, _args);
 				}
 			);
 			

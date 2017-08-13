@@ -2,9 +2,9 @@
 function GameBoardMapView() {
 	PIXI.Container.call(this);
 
-	this.stage = App.stage;
+	this.interactive = true;
 	
-	this.tileMap = new Dict();
+	this.stage = App.stage;
 }
 
 //------------------------------------------------------------------------------------------
@@ -15,12 +15,33 @@ GameBoardMapView.prototype.setup = function(map, gameContainer) {
 	this.map = map;
 	this.gameContainer = gameContainer;
 	
+	this.setupTileSprites();
+	this.setupEvents();
+}
+
+//------------------------------------------------------------------------------------------
+GameBoardMapView.prototype.cleanup = function() {
+	this.leftMouseClickSignal.removeAllListeners();
+	this.rightMouseClickSignal = removeAllListeners();
+	
+	this.tileMap.forEach(function(key) {
+		
+		var sprite = this.tileMap.get(key);
+		this.removeChild(sprite);
+		
+	}.bind(this));
+}
+
+//------------------------------------------------------------------------------------------
+GameBoardMapView.prototype.setupTileSprites = function() {
+	this.tileMap = new Dict();
+	
 	var row, col;
 	
 	for (row = 0; row < this.map.boardRows; row++) {
 		for (col = 0; col < this.map.boardColumns; col++) {
 			var sprite = new GameBoardTileView(PIXI.loader.resources["images/Sheet00.png"].texture);
-			sprite.setup(map, row, col);
+			sprite.setup(this.map, row, col);
 			
 			this.addChild(sprite);
 			
@@ -33,17 +54,50 @@ GameBoardMapView.prototype.setup = function(map, gameContainer) {
 	
 	this.gameContainer.addChild(this);
 	
-	this.updateFromModel();
+	this.x = 32;
+	this.y = 32;
+	
+	this.updateFromModel();	
 }
 
 //------------------------------------------------------------------------------------------
-GameBoardMapView.prototype.cleanup = function() {
-	this.tileMap.forEach(function(key) {
+GameBoardMapView.prototype.setupEvents = function() {
+	this.leftMouseClickSignal = new Signal();
+	this.rightMouseClickSignal = new Signal();
+	
+	this.on("click", function(event) {
+		event.stopPropagation();
 		
-		var sprite = this.tileMap.get(key);
-		this.removeChild(sprite);
-		
+		this.fireSignal(this.leftMouseClickSignal);
 	}.bind(this));
+	
+	this.on("rightclick", function(event) {
+		event.stopPropagation();
+		
+		this.fireSignal(this.rightMouseClickSignal);
+	}.bind(this));
+}
+
+//------------------------------------------------------------------------------------------
+GameBoardMapView.prototype.fireSignal = function(signal) {
+	var point = new PIXI.Point();
+	
+	this.toLocal(App.getMousePos(), App.stage, point);
+	
+	var col = Math.floor(point.x / GameBoardTile.WIDTH);
+	var row = Math.floor(point.x / GameBoardTile.HEIGHT);
+	
+	signal.fireSignal(point, row, col)
+}
+
+//------------------------------------------------------------------------------------------
+GameBoardMapView.prototype.addLeftMouseClickListener = function(listener) {
+	this.leftMouseClickSignal.addListener(listener);
+}
+
+//------------------------------------------------------------------------------------------
+GameBoardMapView.prototype.addRightMouseClickListener = function(listener) {
+	this.rightMouseClickSignal.addListener(listener);
 }
 
 //------------------------------------------------------------------------------------------
@@ -56,7 +110,7 @@ GameBoardMapView.prototype.updateFromModel = function() {
 	this.tileMap.forEach(function(key) {
 		
 		var sprite = this.tileMap.get(key);
-		sprite.gotoAndStop(4);
+		sprite.updateFromModel();
 		
 	}.bind(this));
 }

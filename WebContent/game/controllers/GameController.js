@@ -14,7 +14,7 @@ GameController.prototype.setup = function() {
 
 	var stage = App.stage;
 	stage.addChild(gameContainer);
-	
+		
 	gameContainer.info();	
 	
 	var ticker = new PIXI.ticker.Ticker();
