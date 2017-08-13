@@ -7,20 +7,23 @@
 <title>Minesweeper</title>
 </head>
 	<script src="lib/pixi.min.js"></script>
+	<script src="game/models/GameBoardMap.js"></script>
+	<script src="game/models/GameBoardTile.js"></script>
+	<script src="game/views/GameBoardMapView.js"></script>
+	<script src="game/views/GameBoardTileView.js"></script>		
+	<script src="game/views/GameContainer.js"></script>
+	<script src="game/GameLoadingController.js"></script>
+	<script src="game/GamePlayingController.js"></script>
+	<script src="game/GameEditingController.js"></script>
+	<script src="game/GameOverController.js"></script>
+	<script src="game/GameController.js"></script>
+	<script src="game/App.js"></script>
 	
 	<body>
 		<script>
-			//Create the renderer
-			var renderer = PIXI.autoDetectRenderer(256, 256);
-	
-			//Add the canvas to the HTML document
-			document.body.appendChild(renderer.view);
-	
-			//Create a container object called the `stage`
-			var stage = new PIXI.Container();
-	
-			//Tell the `renderer` to `render` the `stage`
-			renderer.render(stage);
+			var app = new App();
+			app.setup();
+			
 		</script>
 	</body>
 </html>
