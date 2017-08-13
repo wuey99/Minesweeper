@@ -37,6 +37,26 @@ GameBoardTile.prototype.markAsBomb = function() {
 }
 
 //------------------------------------------------------------------------------------------
+GameBoardTile.prototype.markAsFlagged = function() {
+	this.attribute |= GameBoardTile.ATTR_FLAGGED;
+}
+
+//------------------------------------------------------------------------------------------
+GameBoardTile.prototype.isFlagged = function() {
+	return this.attribute & GameBoardTile.ATTR_FLAGGED;
+}
+
+//------------------------------------------------------------------------------------------
+GameBoardTile.prototype.revealTile = function() {
+	this.attribute &= GameBoardTile.ATTR_COVERED ^ 0xff;
+}
+
+//------------------------------------------------------------------------------------------
+GameBoardTile.prototype.isCovered = function() {
+	return this.attribute & GameBoardTile.ATTR_COVERED;
+}
+
+//------------------------------------------------------------------------------------------
 GameBoardTile.prototype.setValue = function(value) {
 	this.currValue = value;	
 }

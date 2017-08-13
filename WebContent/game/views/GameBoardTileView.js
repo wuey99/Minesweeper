@@ -72,6 +72,14 @@ GameBoardTileView.prototype.updateFromModel = function() {
 			frame = GameBoardTileView._6;
 			break;
 	}
+
+	if (tile.isCovered()) {
+//		frame = GameBoardTileView.COVERED;
+	}
+	
+	if (tile.isFlagged()) {
+		frame = GameBoardTileView.FLAGGED;
+	}
 	
 	this.gotoAndStop(frame);
 }

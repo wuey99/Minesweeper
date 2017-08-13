@@ -14,12 +14,22 @@ GamePlayingController.prototype.setup = function(container, parentController) {
 	this.gameBoardView.setup(this.gameBoardMap, this.gameContainer);
 	
 	this.gameBoardView.addLeftMouseClickListener(function(point, row, col) {
-		console.log(": left mouse click: ", point, row, col);
-	});
+		this.handleLeftMouseClick(point, row, col);
+	}.bind(this));
 	
 	this.gameBoardView.addRightMouseClickListener(function(point, row, col) {
-		console.log(": right mouse click: ", point, row, col);
-	});
+		this.handleRightMouseClick(point, row. col);
+	}.bind(this));
+}
+
+//------------------------------------------------------------------------------------------
+GamePlayingController.prototype.handleLeftMouseClick = function(point, row, col) {
+	cohsole.log(": left: ", point, row, col);
+}
+
+//------------------------------------------------------------------------------------------
+GamePlayingController.prototype.handleRightMouseClick = function(point, row, col) {
+	cohsole.log(": right: ", point, row, col);
 }
 
 //------------------------------------------------------------------------------------------
