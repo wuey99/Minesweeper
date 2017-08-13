@@ -1,10 +1,10 @@
 //------------------------------------------------------------------------------------------
 function GameBoardTile() {
-	this.originalValue = GameBoardTile.EMPTY;
-	this.currValue = GameBoardTile.EMPTY;
-	this.attribute = 0x00;
+	this.setValue(GameBoardTile.EMPTY);
+	this.attribute = GameboardTile.ATTR_COVERED;
 }
 
+//------------------------------------------------------------------------------------------
 GameBoardTile.EMPTY = 100;
 GameBoardTile.BOMB = 101;
 GameBoardTile._1 = 1;
@@ -19,6 +19,26 @@ GameBoardTile_ATTR_FLAGGED = 0x02;
 
 //------------------------------------------------------------------------------------------
 GameBoardTile.prototype.setup = function() {
+}
+
+//------------------------------------------------------------------------------------------
+GameBoardTile.prototype.cleanup = function() {
+}
+
+//------------------------------------------------------------------------------------------
+GameBoardTile.prototype.markAsBomb = function() {
+	this.setValue(GameBoardTile.BOMB);
+}
+
+//------------------------------------------------------------------------------------------
+GameBoardTile.prototype.setValue = function(value) {
+	this.originalValue = value;
+	this.currValue = value;	
+}
+
+//------------------------------------------------------------------------------------------
+GameBoardTile.prototype.getValue = function() {
+	return this.currValue;
 }
 
 //------------------------------------------------------------------------------------------

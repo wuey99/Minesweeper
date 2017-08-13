@@ -21,6 +21,15 @@ GameBoardMap.prototype.generateRandom = function() {
 			this.map[row][col].setup();
 		}
 	}	
+	
+	for (i=0; i < this.difficulty; i++) {
+		var row = Math.floor(random() * this.boardRows);
+		var col = Math.floor(random() * this.boardColumns);
+
+		var tile = this.map[row][col];
+		
+		this.markAsBomb();
+	}
 }
 
 //------------------------------------------------------------------------------------------
@@ -28,7 +37,7 @@ GameBoardMap.prototype.update = function() {
 }
 
 //------------------------------------------------------------------------------------------
-GameBoardMap.protype.import = function() {
+GameBoardMap.prototype.import = function() {
 }
 
 //------------------------------------------------------------------------------------------

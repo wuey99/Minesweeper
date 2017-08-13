@@ -24,15 +24,41 @@ GameController.prototype.setup = function() {
 	
 	ticker.start();
 	
-	this.gameController = new GameLoadingController();
-	this.gameController.setup();
+	console.log(": container: ", this.gameContainer);
+	
+	this.launchLoadingScreen();
 }
 
 //------------------------------------------------------------------------------------------
 GameController.prototype.gameLoop = function() {
-	console.log(": tick: ", this.jiffies++);
+//	console.log(": tick: ", this.jiffies++);
 	
 	if (this.gameController) {
 		this.gameController.gameLoop();
 	}
+	
+	App.update();
+}
+
+//------------------------------------------------------------------------------------------
+GameController.prototype.unloadCurrentController = function() {
+	if (this.gameController) {
+		this.gameController.cleanup();
+	}
+}
+
+//------------------------------------------------------------------------------------------
+GameController.prototype.launchLoadingScreen = function() {
+	this.unloadCurrentController();
+	
+	this.gameController = new GameLoadingController();
+	this.gameController.setup(this.gameContainer, this);
+}
+
+//------------------------------------------------------------------------------------------
+GameController.prototype.launchPlayingScreen = function() {
+	this.unloadCurrentController();
+	
+	this.gameController = new GamePlayingController();
+	this.gameController.setup(this.gameContainer, this);
 }

@@ -11,23 +11,14 @@ function App() {
 	
 	this.boardRows = 9;
 	this.boardColumns = 9;
-	this.boardDifficulty = "EASY";
+	this.boardDifficulty = 10;
 }
 
 //------------------------------------------------------------------------------------------
 App.prototype.setupStage = function() {
-	//Create the renderer
-	var renderer = PIXI.autoDetectRenderer(this.stageWidth, this.stageHeight);
-
-	//Add the canvas to the HTML document
+	var stage = this.stage = new PIXI.Container(),
+	renderer = this.renderer = PIXI.autoDetectRenderer(this.stageWidth, this.stageHeight);
 	document.body.appendChild(renderer.view);
-
-	//Create a container object called the `stage`
-	var stage = new PIXI.Container();
-	this.stage = stage;
-	
-	//Tell the `renderer` to `render` the `stage`
-	renderer.render(stage);
 }
 	
 //------------------------------------------------------------------------------------------
@@ -49,7 +40,12 @@ App.prototype.loadAssets = function() {
 		  console.log(": completed loading images: ");
 		  
 		  this.loadComplete = true;
-	  });	
+	  }.bind(this));	
+}
+
+//------------------------------------------------------------------------------------------
+App.prototype.update = function() {
+	this.renderer.render(this.stage);
 }
 
 //------------------------------------------------------------------------------------------
