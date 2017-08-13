@@ -10,7 +10,7 @@ function GameBoardTileView(texture) {
 	
 	this.texture.frame = this.rectangle;
 	
-	this.gotoAndStop(4);
+	this.gotoAndStop(0);
 }
 
 //------------------------------------------------------------------------------------------
@@ -27,6 +27,11 @@ GameBoardTileView.prototype.cleanup = function() {
 //------------------------------------------------------------------------------------------
 GameBoardTileView.prototype.gotoAndStop = function(frame) {
 	this.rectangle.x = frame * GameBoardTile.WIDTH;
+}
+
+//------------------------------------------------------------------------------------------
+GameBoardTileView.prototype.update = function() {
+	this.gotoAndStop(0);
 }
 
 //------------------------------------------------------------------------------------------

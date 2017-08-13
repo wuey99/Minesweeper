@@ -25,7 +25,7 @@ Dict.prototype.get = function(__key) {
 }
 	
 //------------------------------------------------------------------------------------------
-Dict.prototype.put = function(__key, __value) {
+Dict.prototype.set = function(__key, __value) {
 	var __hash = this.hash(__key);
 			
 	this.m_val[__hash] = __value;
