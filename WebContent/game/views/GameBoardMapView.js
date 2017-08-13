@@ -20,6 +20,8 @@ GameBoardMapView.prototype.setup = function(map, gameContainer) {
 	for (row = 0; row < this.map.boardRows; row++) {
 		for (col = 0; col < this.map.boardColumns; col++) {
 			var sprite = new GameBoardTileView(PIXI.loader.resources["images/Sheet00.png"].texture);
+			sprite.setup(map, row, col);
+			
 			this.addChild(sprite);
 			
 			sprite.x = col * GameBoardTile.WIDTH;

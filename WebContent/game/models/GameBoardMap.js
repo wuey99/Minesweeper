@@ -38,11 +38,11 @@ GameBoardMap.prototype.update = function() {
 }
 
 //------------------------------------------------------------------------------------------
-GameBoardMap.prototype.import = function() {
+GameBoardMap.prototype.importLevel = function() {
 }
 
 //------------------------------------------------------------------------------------------
-GameBoardMap.prototype.export = function() {
+GameBoardMap.prototype.exportLevel = function() {
 }
 
 //------------------------------------------------------------------------------------------

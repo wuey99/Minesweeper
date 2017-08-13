@@ -1,5 +1,8 @@
 //------------------------------------------------------------------------------------------
 function GameBoardTile() {
+	this.currValue = 0;
+	this.attribute = 0;
+	
 	this.setValue(GameBoardTile.EMPTY);
 	this.attribute = GameBoardTile.ATTR_COVERED;
 }
@@ -35,7 +38,6 @@ GameBoardTile.prototype.markAsBomb = function() {
 
 //------------------------------------------------------------------------------------------
 GameBoardTile.prototype.setValue = function(value) {
-	this.originalValue = value;
 	this.currValue = value;	
 }
 
