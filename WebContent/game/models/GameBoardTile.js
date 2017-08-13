@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------------------
 function GameBoardTile() {
 	this.setValue(GameBoardTile.EMPTY);
-	this.attribute = GameboardTile.ATTR_COVERED;
+	this.attribute = GameBoardTile.ATTR_COVERED;
 }
 
 //------------------------------------------------------------------------------------------
@@ -16,6 +16,9 @@ GameBoardTile._6 = 6;
 
 GameBoardTile.ATTR_COVERED = 0x01;
 GameBoardTile_ATTR_FLAGGED = 0x02;
+
+GameBoardTile.WIDTH = 64;
+GameBoardTile.HEIGHT = 64;
 
 //------------------------------------------------------------------------------------------
 GameBoardTile.prototype.setup = function() {

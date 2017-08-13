@@ -7,10 +7,11 @@ function GameBoardMap() {
 
 //------------------------------------------------------------------------------------------
 GameBoardMap.prototype.setup = function() {
+	this.generateRandomLevel();
 }
 
 //------------------------------------------------------------------------------------------
-GameBoardMap.prototype.generateRandom = function() {
+GameBoardMap.prototype.generateRandomLevel = function() {
 	this.map = new Array(this.boardRows);
 	
 	for (var row=0; row < this.boardRows; row++) {
@@ -23,12 +24,12 @@ GameBoardMap.prototype.generateRandom = function() {
 	}	
 	
 	for (i=0; i < this.difficulty; i++) {
-		var row = Math.floor(random() * this.boardRows);
-		var col = Math.floor(random() * this.boardColumns);
+		var row = Math.floor(Math.random() * this.boardRows);
+		var col = Math.floor(Math.random() * this.boardColumns);
 
 		var tile = this.map[row][col];
 		
-		this.markAsBomb();
+		tile.markAsBomb();
 	}
 }
 

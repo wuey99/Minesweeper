@@ -9,6 +9,9 @@ GamePlayingController.prototype.setup = function(container, parentController) {
 	
 	this.gameBoardMap = new GameBoardMap();
 	this.gameBoardMap.setup();
+	
+	this.gameBoardView = new GameBoardMapView();
+	this.gameBoardView.setup(this.gameBoardMap, this.gameContainer);
 }
 
 //------------------------------------------------------------------------------------------

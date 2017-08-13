@@ -3,6 +3,8 @@ function GameController() {
 	this.gameContainer = null;
 	this.jiffies = 0;
 	this.gameController = null;
+	this.gameControllerToCull = null;
+	this.gameControllerToLaunch = null;
 }
 
 //------------------------------------------------------------------------------------------
@@ -31,7 +33,17 @@ GameController.prototype.setup = function() {
 
 //------------------------------------------------------------------------------------------
 GameController.prototype.gameLoop = function() {
-//	console.log(": tick: ", this.jiffies++);
+	console.log(": tick: ", this.jiffies++);
+	
+	if (this.gameControllerToCull) {
+		this.gameControllerToCull.cleanup();
+		this.gameControllerToCull = null;
+	}
+	
+	if (this.gameControllerToLaunch) {
+		this.gameControllerToLaunch();
+		this.gameControllerToLaunch = null;
+	}
 	
 	if (this.gameController) {
 		this.gameController.gameLoop();
@@ -43,7 +55,7 @@ GameController.prototype.gameLoop = function() {
 //------------------------------------------------------------------------------------------
 GameController.prototype.unloadCurrentController = function() {
 	if (this.gameController) {
-		this.gameController.cleanup();
+		this.gameControllerToCull = this.gameController;
 	}
 }
 
@@ -51,14 +63,18 @@ GameController.prototype.unloadCurrentController = function() {
 GameController.prototype.launchLoadingScreen = function() {
 	this.unloadCurrentController();
 	
-	this.gameController = new GameLoadingController();
-	this.gameController.setup(this.gameContainer, this);
+	this.gameControllerToLaunch = function() {
+		this.gameController = new GameLoadingController();
+		this.gameController.setup(this.gameContainer, this);
+	}
 }
 
 //------------------------------------------------------------------------------------------
 GameController.prototype.launchPlayingScreen = function() {
 	this.unloadCurrentController();
 	
-	this.gameController = new GamePlayingController();
-	this.gameController.setup(this.gameContainer, this);
+	this.gameControllerToLaunch = function() {
+		this.gameController = new GamePlayingController();
+		this.gameController.setup(this.gameContainer, this);
+	}
 }

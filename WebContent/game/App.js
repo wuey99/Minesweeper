@@ -25,6 +25,7 @@ App.prototype.setupStage = function() {
 App.prototype.loadAssets = function() {
 	PIXI.loader
 	  .add([
+		"images/Sheet00.png",
 	    "images/Tile_100.png",
 	    "images/Tile_200.png",
 	    "images/Tile_300.png",
