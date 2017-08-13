@@ -12,14 +12,14 @@ GameBoardMap.prototype.setup = function() {
 
 //------------------------------------------------------------------------------------------
 GameBoardMap.prototype.generateRandomLevel = function() {
-	this.map = new Array(this.boardRows);
+	this.data = new Array(this.boardRows);
 	
 	for (var row=0; row < this.boardRows; row++) {
-		this.map[row] = new Array(this.boardColumns);
+		this.data[row] = new Array(this.boardColumns);
 		
 		for (var col=0; col < this.boardColumns; col++) {
-			this.map[row][col] = new GameBoardTile();
-			this.map[row][col].setup();
+			this.data[row][col] = new GameBoardTile();
+			this.data[row][col].setup();
 		}
 	}	
 	
@@ -27,7 +27,7 @@ GameBoardMap.prototype.generateRandomLevel = function() {
 		var row = Math.floor(Math.random() * this.boardRows);
 		var col = Math.floor(Math.random() * this.boardColumns);
 
-		var tile = this.map[row][col];
+		var tile = this.data[row][col];
 		
 		tile.markAsBomb();
 	}
