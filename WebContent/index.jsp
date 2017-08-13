@@ -7,6 +7,8 @@
 <title>Minesweeper</title>
 </head>
 	<script src="lib/pixi.min.js"></script>
+	<script src="lib/Dict.js"></script>	
+	<script src="lib/Signal.js"></script>
 	<script src="game/models/GameBoardMap.js"></script>
 	<script src="game/models/GameBoardTile.js"></script>
 	<script src="game/views/GameBoardMapView.js"></script>

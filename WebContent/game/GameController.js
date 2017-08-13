@@ -33,6 +33,6 @@ GameController.prototype.gameLoop = function() {
 	console.log(": tick: ", this.jiffies++);
 	
 	if (this.gameController) {
-		gameController.gameLoop();
+		this.gameController.gameLoop();
 	}
 }
