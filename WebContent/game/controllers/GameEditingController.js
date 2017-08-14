@@ -37,6 +37,7 @@ GameEditingController.prototype.cleanup = function() {
 	this.gameContainer.removeChild(this.quitGameButton);
 	this.gameContainer.removeChild(this.loadGameText);
 	this.gameContainer.removeChild(this.saveGameText);
+	this.gameContainer.removeChild(this.helpText);
 }
 
 //------------------------------------------------------------------------------------------
@@ -47,10 +48,15 @@ GameEditingController.prototype.createSprites = function() {
 	    fontWeight: 'bold',
 	    fill: ['#0000ee', '#0000c0'],
 	    wordWrap: true,
-	    wordWrapWidth: App.stageWidth*3/4,
+	    wordWrapWidth: App.stageWidth*9/10,
 	    align: 'center'
 	});
 
+	this.helpText = new PIXI.Text("left-click to toggle mines on/off", style);
+	this.helpText.x = 32;
+	this.helpText.y = 32;
+	this.gameContainer.addChild(this.helpText);
+	
 	this.quitGameButton = new PIXI.Text("Quit Editing", style);
 	this.quitGameButton.x = 32;
 	this.quitGameButton.y = 720;
@@ -111,7 +117,7 @@ GameEditingController.prototype.readSingleFile = function(that) {
 		
 		console.log(": json: ", json)
 		
-		this.parentController.launchEditingScreen(json);
+		this.parentController.launchScreen(json);
 	}.bind(this);
 	
 	reader.readAsText(file);
@@ -124,6 +130,15 @@ GameEditingController.prototype.exportLevel = function() {
 
 //------------------------------------------------------------------------------------------
 GameEditingController.prototype.handleLeftMouseClick = function(point, row, col) {
+	var tile = this.gameBoardMap.getTile(row, col);
+	
+	if (tile.getValue() == GameBoardTile.EMPTY) {
+		tile.setValue(GameBoardTile.BOMB);
+	} else if (tile.getValue() == GameBoardTile.BOMB) {
+		tile.setValue(GameBoardTile.EMPTY);
+	}
+	
+	this.gameBoardView.updateFromModel();
 }
 
 //------------------------------------------------------------------------------------------

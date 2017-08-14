@@ -29,10 +29,18 @@ GameBoardMap.prototype.generateRandomLevel = function() {
 	}	
 	
 	for (i=0; i < this.difficulty; i++) {
-		var row = Math.floor(Math.random() * this.boardRows);
-		var col = Math.floor(Math.random() * this.boardColumns);
+		var flag = true;
+		
+		var row, col;
+		
+		while (flag) {
+			row = Math.floor(Math.random() * this.boardRows);
+			col = Math.floor(Math.random() * this.boardColumns);
 
-		var tile = this.data[row][col];
+			var tile = this.data[row][col];
+			
+			flag = (tile.getValue() == GameBoardTile.BOMB);
+		}
 		
 		tile.markAsBomb();
 	}
