@@ -102,11 +102,27 @@ GameLoadingController.prototype.setupSprites = function(container, parentControl
 	this.loadGameText.on("click", function() {
 		document.querySelector('.inputFile').click();	
 		var input = document.querySelector('.inputFile');
+		var me = this;
 		input.onchange = function() {
 			console.log(": changed: ", this.files[0]);
+			me.readSingleFile(this);
 		};
 		console.log(": input: ", input);
 	}.bind(this));
+}
+
+//------------------------------------------------------------------------------------------
+GameLoadingController.prototype.readSingleFile = function(that) {
+	var file = that.files[0];
+	if (!file) {
+		return;
+	}
+	var reader = new FileReader();
+	reader.onload = function(e) {
+		var contents = e.target.result;
+		console.log(": contents: ", contents);
+	}.bind(this);
+	reader.readAsText(file);
 }
 
 //------------------------------------------------------------------------------------------
