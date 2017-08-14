@@ -46,7 +46,7 @@ GameLoadingController.prototype.setupSprites = function(container, parentControl
 		App.boardDifficulty = 10;
 	}.bind(this));
 	
-	this.mediumGameText = new PIXI.Text("Medium (15x15), 20 mines.", style);
+	this.mediumGameText = new PIXI.Text("Medium (15x15), 40 mines.", style);
 	this.mediumGameText.x = 64;
 	this.mediumGameText.y = 176;
 	this.mediumGameText.interactive = true;
@@ -55,10 +55,10 @@ GameLoadingController.prototype.setupSprites = function(container, parentControl
 		this.cursorSprite.y = this.mediumGameText.y + 16;	
 		App.boardRows = 15;
 		App.boardColumns = 15;
-		App.boardDifficulty = 20;
+		App.boardDifficulty = 40;
 	}.bind(this));
 	
-	this.hardGameText = new PIXI.Text("Hard (21x21), 30 mines.", style);
+	this.hardGameText = new PIXI.Text("Hard (21x21), 90 mines.", style);
 	this.hardGameText.x = 64;
 	this.hardGameText.y = 224;
 	this.hardGameText.interactive = true;
@@ -67,7 +67,7 @@ GameLoadingController.prototype.setupSprites = function(container, parentControl
 		this.cursorSprite.y = this.hardGameText.y + 16;		
 		App.boardRows = 21;
 		App.boardColumns = 21;
-		App.boardDifficulty = 30;
+		App.boardDifficulty = 90;
 	}.bind(this));
 
 	this.cursorSprite = new GameCursor(PIXI.loader.resources["images/Cursor00.png"].texture);
@@ -100,7 +100,12 @@ GameLoadingController.prototype.setupSprites = function(container, parentControl
 	this.loadGameText.interactive = true;
 	this.gameContainer.addChild(this.loadGameText);
 	this.loadGameText.on("click", function() {
-		
+		document.querySelector('.inputFile').click();	
+		var input = document.querySelector('.inputFile');
+		input.onchange = function() {
+			console.log(": changed: ", this.files[0]);
+		};
+		console.log(": input: ", input);
 	}.bind(this));
 }
 

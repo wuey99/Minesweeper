@@ -24,10 +24,11 @@
 	<script src="game/App.js"></script>
 	
 	<body>
+		<input class="inputFile" type="file" style="display: none;"/>		
 		<script>
 			var app = new App();
 			app.setup();	
-			
+			var a = '<input class="inputFile" type="file" style="display: none;"/>';						
 		</script>
 	</body>
 </html>

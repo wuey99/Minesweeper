@@ -130,6 +130,19 @@ GamePlayingController.prototype.handleRightMouseClick = function(point, row, col
 		this.gameBoardMap.toggleFlagged(row, col);
 		this.gameBoardView.updateFromModel();
 	}
+	
+	if (this.gameBoardMap.checkForWin()) {
+		console.log(": won: ");
+		
+		this.youWonText.visible = true;
+		this.showNumBombs.visible = false;
+		
+		this.gameBoardMap.uncoverEntireMap();
+		this.gameBoardView.updateFromModel();		
+	}
+	else {
+		console.log(": not won: ");
+	}
 }
 
 //------------------------------------------------------------------------------------------

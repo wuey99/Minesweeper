@@ -57,6 +57,20 @@ GameEditingController.prototype.createSprites = function() {
 		
 		this.parentController.launchLoadingScreen();
 	}.bind(this));
+	
+	this.saveGameText = new PIXI.Text("Save", style);
+	this.saveGameText.x = 512;
+	this.saveGameText.y = 720;
+	this.gameContainer.addChild(this.saveGameText);
+	this.saveGameText.interactive = true;
+	this.saveGameText.on("click", function() {
+		document.querySelector('.inputFile').click();	
+		var input = document.querySelector('.inputFile');
+		input.onchange = function() {
+			console.log(": changed: ", this.files[0]);
+		};
+		console.log(": input: ", input);
+	}.bind(this));
 }
 
 //------------------------------------------------------------------------------------------

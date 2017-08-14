@@ -39,6 +39,22 @@ GameBoardMap.prototype.update = function() {
 }
 
 //------------------------------------------------------------------------------------------
+GameBoardMap.prototype.checkForWin = function() {	
+	var flaggedCount = 0;
+	
+	for (var row=0; row < this.boardRows; row++) {
+		for (var col=0; col < this.boardColumns; col++) {
+			var tile = this.data[row][col];
+			if (tile.getValue() == GameBoardTile.BOMB && tile.isFlagged()) {
+				flaggedCount++;
+			}
+		}
+	}
+	
+	return flaggedCount == this.difficulty;
+}
+
+//------------------------------------------------------------------------------------------
 GameBoardMap.prototype.uncoverEntireMap = function() {	
 	for (var row=0; row < this.boardRows; row++) {
 		for (var col=0; col < this.boardColumns; col++) {
