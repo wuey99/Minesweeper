@@ -7,7 +7,7 @@ GamePlayingController.prototype.setup = function(container, parentController) {
 	this.gameContainer = container;
 	this.parentController = parentController;
 	
-	this.gameBoardMap = new GameBoardMap();
+	this.gameBoardMap = new GameBoardMap({editing: false});
 	this.gameBoardMap.setup();
 	
 	this.gameBoardView = new GameBoardMapView();
@@ -103,6 +103,9 @@ GamePlayingController.prototype.handleLeftMouseClick = function(point, row, col)
 		this.gameOverFlag = true;
 		this.showNumBombs.visible = false;
 		this.gameOverText.visible = true;
+		
+		this.gameBoardMap.uncoverEntireMap();
+		this.gameBoardView.updateFromModel();
 		
 		return;
 	}

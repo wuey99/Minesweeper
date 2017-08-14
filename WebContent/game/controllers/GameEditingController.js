@@ -7,7 +7,7 @@ GameEditingController.prototype.setup = function(container, parentController) {
 	this.gameContainer = container;
 	this.parentController = parentController;
 	
-	this.gameBoardMap = new GameBoardMap();
+	this.gameBoardMap = new GameBoardMap({editing: true});
 	this.gameBoardMap.setup();
 	
 	this.gameBoardView = new GameBoardMapView();

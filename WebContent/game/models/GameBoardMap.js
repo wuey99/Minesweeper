@@ -1,8 +1,9 @@
 //------------------------------------------------------------------------------------------
-function GameBoardMap() {
+function GameBoardMap(config) {
 	this.boardRows = App.boardRows;
 	this.boardColumns = App.boardColumns;
 	this.difficulty = App.boardDifficulty;
+	this.editingMode = config.editing;
 }
 
 //------------------------------------------------------------------------------------------
@@ -35,6 +36,16 @@ GameBoardMap.prototype.generateRandomLevel = function() {
 
 //------------------------------------------------------------------------------------------
 GameBoardMap.prototype.update = function() {	
+}
+
+//------------------------------------------------------------------------------------------
+GameBoardMap.prototype.uncoverEntireMap = function() {	
+	for (var row=0; row < this.boardRows; row++) {
+		for (var col=0; col < this.boardColumns; col++) {
+			var tile = this.data[row][col];
+			tile.uncover();
+		}
+	}	
 }
 
 //------------------------------------------------------------------------------------------

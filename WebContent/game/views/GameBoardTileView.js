@@ -73,7 +73,7 @@ GameBoardTileView.prototype.updateFromModel = function() {
 			break;
 	}
 
-	if (tile.getValue() != GameBoardTile.BOMB)
+	if (!this.map.editingMode)
 	if (tile.isCovered()) {
 		frame = GameBoardTileView.COVERED;
 	}
