@@ -51,8 +51,22 @@ GameBoardMap.prototype.toggleFlagged = function(row, col) {
 }
 
 //------------------------------------------------------------------------------------------
+GameBoardMap.prototype.getTile = function(row, col) {
+	return this.data[row][col];
+}
+
+//------------------------------------------------------------------------------------------
+GameBoardMap.prototype.getTileValue = function(row, col) {
+	return this.data[row][col].getValue();
+}
+
+//------------------------------------------------------------------------------------------
 GameBoardMap.prototype.traverseBoard = function(depth, row, col) {
 	var tile = this.data[row][col];
+	
+	if (tile.getValue() == GameBoardTile.BOMB) {
+		return;
+	}
 	
 	if (tile.isFlagged()) {
 		return;

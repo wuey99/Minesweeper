@@ -14,7 +14,8 @@ GameLoadingController.prototype.setup = function(container, parentController) {
 	    fontWeight: 'bold',
 	    fill: ['#0000ee', '#0000c0'],
 	    wordWrap: true,
-	    wordWrapWidth: App.stageWidth*3/4
+	    wordWrapWidth: App.stageWidth*3/4,
+	    align: 'center'
 	});
 	
 	this.loadingText = new PIXI.Text("Laying the mines...", style);

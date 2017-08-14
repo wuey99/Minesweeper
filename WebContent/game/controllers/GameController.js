@@ -5,6 +5,7 @@ function GameController() {
 	this.gameController = null;
 	this.gameControllerToCull = null;
 	this.gameControllerToLaunch = null;
+	this.gameLoopSignal = new Signal();
 }
 
 //------------------------------------------------------------------------------------------
@@ -49,7 +50,19 @@ GameController.prototype.gameLoop = function() {
 		this.gameController.gameLoop();
 	}
 	
+	this.gameLoopSignal.fireSignal();
+	
 	App.update();
+}
+
+//-----------------------------------------------------------------------------------------
+GameController.prototype.addGameLoopListener = function(listener) {
+	this.gameLoopSignal.addListener(listener);
+}
+
+//-----------------------------------------------------------------------------------------
+GameController.prototype.removeGameLoopListener = function(listener) {
+	this.gameLoopSignal.removeListener(listener);	
 }
 
 //------------------------------------------------------------------------------------------

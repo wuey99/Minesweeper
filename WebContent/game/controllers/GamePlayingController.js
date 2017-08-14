@@ -26,6 +26,17 @@ GamePlayingController.prototype.setup = function(container, parentController) {
 GamePlayingController.prototype.handleLeftMouseClick = function(point, row, col) {
 	console.log(": left: ", point, row, col);
 	
+	var tile = this.gameBoardMap.getTile(row, col);
+	if (tile.getValue() == GameBoardTile.BOMB) {
+		var sprite = new Explosion(PIXI.loader.resources["images/Explosion00.png"].texture);
+		this.gameContainer.addChild(sprite);
+		sprite.setup(this.gameContainer, this.parentController);
+		sprite.x = point.x;
+		sprite.y = point.y;
+		
+		return;
+	}
+	
 	this.gameBoardMap.traverseBoard(0, row, col);
 	this.gameBoardView.updateFromModel();
 }

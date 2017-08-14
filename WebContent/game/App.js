@@ -35,6 +35,7 @@ App.prototype.getMousePos = function() {
 App.prototype.loadAssets = function() {
 	PIXI.loader
 	  .add([
+		"images/Explosion00.png",
 		"images/Sheet.json",
 		"images/Sheet00.png",
 	    "images/Tile_100.png",
