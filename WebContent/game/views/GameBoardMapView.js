@@ -55,7 +55,7 @@ GameBoardMapView.prototype.setupTileSprites = function() {
 	
 	this.gameContainer.addChild(this);
 	
-	this.x = 32;
+	this.x = 96;
 	this.y = 96;
 	
 	this.updateFromModel();	

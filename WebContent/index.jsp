@@ -10,6 +10,7 @@
 	<script src="lib/Dict.js"></script>	
 	<script src="lib/Signal.js"></script>
 	<script src="game/misc/Explosion.js"></script>
+	<script src="game/misc/GameCursor.js"></script>
 	<script src="game/models/GameBoardMap.js"></script>
 	<script src="game/models/GameBoardTile.js"></script>
 	<script src="game/views/GameBoardMapView.js"></script>
