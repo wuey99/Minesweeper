@@ -24,12 +24,15 @@ GamePlayingController.prototype.setup = function(container, parentController) {
 
 //------------------------------------------------------------------------------------------
 GamePlayingController.prototype.handleLeftMouseClick = function(point, row, col) {
-	cohsole.log(": left: ", point, row, col);
+	console.log(": left: ", point, row, col);
+	
+	this.gameBoardMap.traverseBoard(0, row, col);
+	this.gameBoardView.updateFromModel();
 }
 
 //------------------------------------------------------------------------------------------
 GamePlayingController.prototype.handleRightMouseClick = function(point, row, col) {
-	cohsole.log(": right: ", point, row, col);
+	console.log(": right: ", point, row, col);
 }
 
 //------------------------------------------------------------------------------------------

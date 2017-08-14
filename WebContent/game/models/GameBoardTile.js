@@ -47,7 +47,7 @@ GameBoardTile.prototype.isFlagged = function() {
 }
 
 //------------------------------------------------------------------------------------------
-GameBoardTile.prototype.revealTile = function() {
+GameBoardTile.prototype.uncover = function() {
 	this.attribute &= GameBoardTile.ATTR_COVERED ^ 0xff;
 }
 
@@ -59,6 +59,12 @@ GameBoardTile.prototype.isCovered = function() {
 //------------------------------------------------------------------------------------------
 GameBoardTile.prototype.setValue = function(value) {
 	this.currValue = value;	
+}
+
+//------------------------------------------------------------------------------------------
+GameBoardTile.prototype.setValueAndUncover = function(value) {
+	this.currValue = value;	
+	this.attribute &= GameBoardTile.ATTR_COVERED ^ 0xff;
 }
 
 //------------------------------------------------------------------------------------------
