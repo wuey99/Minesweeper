@@ -70,7 +70,7 @@ App.prototype.setup = function() {
 	var controller = new GameController();
 	controller.setup();
 	
-	window.webkitRequestFileSystem(window.TEMPORARY, 5*1024*1024 /*5MB*/, onInitFs, errorHandler);
+//	window.webkitRequestFileSystem(window.TEMPORARY, 5*1024*1024 /*5MB*/, onInitFs, errorHandler);
 }
 
 function onInitFs(fs) {

@@ -245,6 +245,19 @@ GameBoardMap.prototype.importLevel = function() {
 
 //------------------------------------------------------------------------------------------
 GameBoardMap.prototype.exportLevel = function() {
+	var row = 0;
+
+	var levelData = {};
+	
+	levelData["boardRows"] = this.boardRows;
+	levelData["boardColumns"] = this.boardColumns;
+	
+	for (row = 0; row < this.boardRows; row++) {
+		levelData["row"+row] = this.data[row];
+		
+	}
+
+	return JSON.stringify(levelData);
 }
 
 //------------------------------------------------------------------------------------------

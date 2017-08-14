@@ -9,6 +9,7 @@
 	<script src="lib/pixi.min.js"></script>
 	<script src="lib/Dict.js"></script>	
 	<script src="lib/Signal.js"></script>
+	<script src="lib/FileSaver.js"></script>	
 	<script src="game/misc/Explosion.js"></script>
 	<script src="game/misc/GameCursor.js"></script>
 	<script src="game/models/GameBoardMap.js"></script>
@@ -24,7 +25,8 @@
 	<script src="game/App.js"></script>
 	
 	<body>
-		<input class="inputFile" type="file" style="display: none;"/>		
+		<input class="inputFile" type="file" style="display: none;"/>
+		<a href="#" download="data.csv" class="btnSave" style="display: none;">Save</a>		
 		<script>
 			var app = new App();
 			app.setup();	

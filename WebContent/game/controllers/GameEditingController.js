@@ -64,13 +64,18 @@ GameEditingController.prototype.createSprites = function() {
 	this.gameContainer.addChild(this.saveGameText);
 	this.saveGameText.interactive = true;
 	this.saveGameText.on("click", function() {
-		document.querySelector('.inputFile').click();	
-		var input = document.querySelector('.inputFile');
-		input.onchange = function() {
-			console.log(": changed: ", this.files[0]);
-		};
-		console.log(": input: ", input);
+		var save = document.querySelector('.btnSave');
+		console.log(": ", save.download);
+		var data = 'data:application/text;charset=utf-8,' + encodeURIComponent(this.exportLevel());
+		save.href = data;
+		save.download = "level.dat";
+		document.querySelector('.btnSave').click();	
 	}.bind(this));
+}
+
+//------------------------------------------------------------------------------------------
+GameEditingController.prototype.exportLevel = function() {
+	return this.gameBoardMap.exportLevel();
 }
 
 //------------------------------------------------------------------------------------------
