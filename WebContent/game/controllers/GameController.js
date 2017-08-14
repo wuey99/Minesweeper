@@ -91,3 +91,8 @@ GameController.prototype.launchLoadingScreen = function() {
 GameController.prototype.launchPlayingScreen = function() {
 	this.launch(GamePlayingController);
 }
+
+//------------------------------------------------------------------------------------------
+GameController.prototype.launchEditingScreen = function() {
+	this.launch(GameEditingController);
+}

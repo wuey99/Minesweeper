@@ -91,8 +91,17 @@ GameLoadingController.prototype.setupSprites = function(container, parentControl
 	this.editGameText.interactive = true;
 	this.gameContainer.addChild(this.editGameText);
 	this.editGameText.on("click", function() {
-		
+		this.parentController.launchEditingScreen();			
 	}.bind(this));	
+	
+	this.loadGameText = new PIXI.Text("Load", style);
+	this.loadGameText.x = 520;
+	this.loadGameText.y = 320;
+	this.loadGameText.interactive = true;
+	this.gameContainer.addChild(this.loadGameText);
+	this.loadGameText.on("click", function() {
+		
+	}.bind(this));
 }
 
 //------------------------------------------------------------------------------------------
@@ -104,6 +113,7 @@ GameLoadingController.prototype.cleanup = function() {
 	this.gameContainer.removeChild(this.cursorSprite);
 	this.gameContainer.removeChild(this.playGameText);
 	this.gameContainer.removeChild(this.editGameText);
+	this.gameContainer.removeChild(this.loadGameText);
 }
 
 //------------------------------------------------------------------------------------------
