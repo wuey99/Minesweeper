@@ -13,6 +13,11 @@ GamePlayingController.prototype.setup = function(container, parentController) {
 	this.gameBoardView = new GameBoardMapView();
 	this.gameBoardView.setup(this.gameBoardMap, this.gameContainer);
 	
+	scale = (576/App.boardColumns)/GameBoardTile.WIDTH;
+	
+	this.gameBoardView.scale.x = scale;
+	this.gameBoardView.scale.y = scale;
+	
 	this.gameBoardView.addLeftMouseClickListener(function(point, row, col) {
 		this.handleLeftMouseClick(point, row, col);
 	}.bind(this));
