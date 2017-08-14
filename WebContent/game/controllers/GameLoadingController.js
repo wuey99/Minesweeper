@@ -128,6 +128,8 @@ GameLoadingController.prototype.readSingleFile = function(that) {
 		var json = JSON.parse(contents);
 		
 		console.log(": json: ", json)
+		
+		this.parentController.launchPlayingScreen(json);
 	}.bind(this);
 	
 	reader.readAsText(file);

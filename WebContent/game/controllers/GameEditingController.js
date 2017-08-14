@@ -35,6 +35,7 @@ GameEditingController.prototype.setup = function(container, parentController, da
 GameEditingController.prototype.cleanup = function() {
 	this.gameContainer.removeChild(this.gameBoardView);
 	this.gameContainer.removeChild(this.quitGameButton);
+	this.gameContainer.removeChild(this.loadGameText);
 	this.gameContainer.removeChild(this.saveGameText);
 }
 
@@ -61,8 +62,24 @@ GameEditingController.prototype.createSprites = function() {
 		this.parentController.launchLoadingScreen();
 	}.bind(this));
 	
+	this.loadGameText = new PIXI.Text("Load", style);
+	this.loadGameText.x = 400;
+	this.loadGameText.y = 720;
+	this.gameContainer.addChild(this.loadGameText);
+	this.loadGameText.interactive = true;
+	this.loadGameText.on("click", function() {
+		document.querySelector('.inputFile').click();	
+		var input = document.querySelector('.inputFile');
+		var me = this;
+		input.onchange = function() {
+			console.log(": changed: ", this.files[0]);
+			me.readSingleFile(this);
+		};
+		console.log(": input: ", input);
+	}.bind(this));
+	
 	this.saveGameText = new PIXI.Text("Save", style);
-	this.saveGameText.x = 512;
+	this.saveGameText.x = 600;
 	this.saveGameText.y = 720;
 	this.gameContainer.addChild(this.saveGameText);
 	this.saveGameText.interactive = true;
@@ -74,6 +91,30 @@ GameEditingController.prototype.createSprites = function() {
 		save.download = "level.dat";
 		document.querySelector('.btnSave').click();	
 	}.bind(this));
+}
+
+//------------------------------------------------------------------------------------------
+GameEditingController.prototype.readSingleFile = function(that) {
+	var file = that.files[0];
+	
+	if (!file) {
+		return;
+	}
+	
+	var reader = new FileReader();
+	
+	reader.onload = function(e) {
+		var contents = e.target.result;
+		console.log(": contents: ", contents);
+		
+		var json = JSON.parse(contents);
+		
+		console.log(": json: ", json)
+		
+		this.parentController.launchEditingScreen(json);
+	}.bind(this);
+	
+	reader.readAsText(file);
 }
 
 //------------------------------------------------------------------------------------------

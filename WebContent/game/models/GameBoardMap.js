@@ -10,6 +10,8 @@ function GameBoardMap(config) {
 GameBoardMap.prototype.setup = function(data) {
 	if (data == undefined) {
 		this.generateRandomLevel();
+	} else {
+		this.parseLevelData(data);
 	}
 }
 
@@ -35,6 +37,36 @@ GameBoardMap.prototype.generateRandomLevel = function() {
 		tile.markAsBomb();
 	}
 }
+
+//------------------------------------------------------------------------------------------
+GameBoardMap.prototype.parseLevelData = function(jsonData) {
+	this.boardRows = jsonData["boardRows"];
+	this.boardColumns = jsonData["boardColumns"];
+	
+	this.data = new Array(this.boardRows);
+	
+	var bombCount = 0;
+	for (var row=0; row < this.boardRows; row++) {
+		this.data[row] = new Array(this.boardColumns);
+		
+		var rowData = jsonData["row" + row];
+		
+		for (var col=0; col < this.boardColumns; col++) {
+			var tile = new GameBoardTile();
+			this.data[row][col] = tile;
+			this.data[row][col].setup();
+			tile.setValue(rowData[col]["currValue"]);
+			tile.attribute = rowData[col]["attribute"];
+			if (tile.getValue() == GameBoardTile.BOMB) {
+				bombCount++;
+			}
+		}
+	}	
+
+	// this.difficulty needs to be set by counting
+	this.difficulty = bombCount;
+}
+
 
 //------------------------------------------------------------------------------------------
 GameBoardMap.prototype.update = function() {	
