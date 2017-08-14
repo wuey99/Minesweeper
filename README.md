@@ -38,5 +38,5 @@ known or possible bugs:
 
 1) end game explosion not working propery for difficulties >= medium
 2) traversal code may be buggy.
-3) end game feedback of where flags are placed not user-friendly.  I may look into addressing this later today
+3) end game feedback of where flags are placed not user-friendly.  I may look into addressing this later today.  might add a awy to toggle the flags on/off in the end-game state.
 
