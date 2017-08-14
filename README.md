@@ -35,6 +35,7 @@ directory structure
 		GameBoardTile.js // represents a game board tile
 		
 	+ views
+	
 		GameBoardMapView.js // holds the board game map.  not currently optimized, just a 1:1 		mapping of the board game map data.
 		
 		GameBoardTileView.js // represents a single tile sprite
