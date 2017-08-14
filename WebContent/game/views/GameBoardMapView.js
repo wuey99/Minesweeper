@@ -87,7 +87,7 @@ GameBoardMapView.prototype.fireSignal = function(signal) {
 	
 	var col = Math.floor(point.x / GameBoardTile.WIDTH);
 	var row = Math.floor(point.y / GameBoardTile.HEIGHT);
-	
+
 	signal.fireSignal(point, row, col)
 }
 

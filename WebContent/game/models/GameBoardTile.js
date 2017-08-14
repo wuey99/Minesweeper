@@ -18,7 +18,7 @@ GameBoardTile._5 = 5;
 GameBoardTile._6 = 6;
 
 GameBoardTile.ATTR_COVERED = 0x01;
-GameBoardTile_ATTR_FLAGGED = 0x02;
+GameBoardTile.ATTR_FLAGGED = 0x02;
 
 GameBoardTile.WIDTH = 64;
 GameBoardTile.HEIGHT = 64;
@@ -38,7 +38,12 @@ GameBoardTile.prototype.markAsBomb = function() {
 
 //------------------------------------------------------------------------------------------
 GameBoardTile.prototype.markAsFlagged = function() {
-	this.attribute |= GameBoardTile.ATTR_FLAGGED;
+	this.attribute |= GameBoardTile.ATTR_FLAGGED;;
+}
+
+//------------------------------------------------------------------------------------------
+GameBoardTile.prototype.unmarkFlagged = function() {
+	this.attribute &= GameBoardTile.ATTR_FLAGGED ^ 0xff;
 }
 
 //------------------------------------------------------------------------------------------

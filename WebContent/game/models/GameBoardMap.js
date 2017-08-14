@@ -38,8 +38,25 @@ GameBoardMap.prototype.update = function() {
 }
 
 //------------------------------------------------------------------------------------------
+GameBoardMap.prototype.toggleFlagged = function(row, col) {
+	var tile = this.data[row][col];
+	
+	if (tile.isFlagged()) {
+		tile.unmarkFlagged();
+	}
+	else {
+		tile.markAsFlagged();
+	}
+		
+}
+
+//------------------------------------------------------------------------------------------
 GameBoardMap.prototype.traverseBoard = function(depth, row, col) {
 	var tile = this.data[row][col];
+	
+	if (tile.isFlagged()) {
+		return;
+	}
 	
 	if (!tile.isCovered()) {
 		return;

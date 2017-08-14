@@ -32,7 +32,13 @@ GamePlayingController.prototype.handleLeftMouseClick = function(point, row, col)
 
 //------------------------------------------------------------------------------------------
 GamePlayingController.prototype.handleRightMouseClick = function(point, row, col) {
+	var col = Math.floor(point.x / GameBoardTile.WIDTH);
+	var row = Math.floor(point.y / GameBoardTile.HEIGHT);
+	
 	console.log(": right: ", point, row, col);
+	
+	this.gameBoardMap.toggleFlagged(row, col);
+	this.gameBoardView.updateFromModel();
 }
 
 //------------------------------------------------------------------------------------------

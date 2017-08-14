@@ -24,7 +24,7 @@
 	<body>
 		<script>
 			var app = new App();
-			app.setup();
+			app.setup();	
 			
 		</script>
 	</body>
