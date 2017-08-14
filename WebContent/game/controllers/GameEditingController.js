@@ -3,12 +3,14 @@ function GameEditingController() {
 }
 
 //------------------------------------------------------------------------------------------
-GameEditingController.prototype.setup = function(container, parentController) {
+GameEditingController.prototype.setup = function(container, parentController, data) {
 	this.gameContainer = container;
 	this.parentController = parentController;
 	
+	console.log(": data: ", data);
+	
 	this.gameBoardMap = new GameBoardMap({editing: true});
-	this.gameBoardMap.setup();
+	this.gameBoardMap.setup(data);
 	
 	this.gameBoardView = new GameBoardMapView();
 	this.gameBoardView.setup(this.gameBoardMap, this.gameContainer);
@@ -33,6 +35,7 @@ GameEditingController.prototype.setup = function(container, parentController) {
 GameEditingController.prototype.cleanup = function() {
 	this.gameContainer.removeChild(this.gameBoardView);
 	this.gameContainer.removeChild(this.quitGameButton);
+	this.gameContainer.removeChild(this.saveGameText);
 }
 
 //------------------------------------------------------------------------------------------

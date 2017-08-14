@@ -114,14 +114,22 @@ GameLoadingController.prototype.setupSprites = function(container, parentControl
 //------------------------------------------------------------------------------------------
 GameLoadingController.prototype.readSingleFile = function(that) {
 	var file = that.files[0];
+	
 	if (!file) {
 		return;
 	}
+	
 	var reader = new FileReader();
+	
 	reader.onload = function(e) {
 		var contents = e.target.result;
 		console.log(": contents: ", contents);
+		
+		var json = JSON.parse(contents);
+		
+		console.log(": json: ", json)
 	}.bind(this);
+	
 	reader.readAsText(file);
 }
 

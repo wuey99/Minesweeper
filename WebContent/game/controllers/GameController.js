@@ -73,7 +73,7 @@ GameController.prototype.unloadCurrentController = function() {
 }
 
 //------------------------------------------------------------------------------------------
-GameController.prototype.launch = function(controllerClass) {
+GameController.prototype.launch = function(controllerClass, data) {
 	this.unloadCurrentController();
 	
 	this.gameControllerToLaunch = function() {
@@ -88,11 +88,11 @@ GameController.prototype.launchLoadingScreen = function() {
 }
 
 //------------------------------------------------------------------------------------------
-GameController.prototype.launchPlayingScreen = function() {
-	this.launch(GamePlayingController);
+GameController.prototype.launchPlayingScreen = function(data) {
+	this.launch(GamePlayingController, data);
 }
 
 //------------------------------------------------------------------------------------------
-GameController.prototype.launchEditingScreen = function() {
-	this.launch(GameEditingController);
+GameController.prototype.launchEditingScreen = function(data) {
+	this.launch(GameEditingController, data);
 }

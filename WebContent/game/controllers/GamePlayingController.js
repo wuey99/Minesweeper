@@ -3,12 +3,12 @@ function GamePlayingController() {
 }
 
 //------------------------------------------------------------------------------------------
-GamePlayingController.prototype.setup = function(container, parentController) {
+GamePlayingController.prototype.setup = function(container, parentController, data) {
 	this.gameContainer = container;
 	this.parentController = parentController;
 	
 	this.gameBoardMap = new GameBoardMap({editing: false});
-	this.gameBoardMap.setup();
+	this.gameBoardMap.setup(data);
 	
 	this.gameBoardView = new GameBoardMapView();
 	this.gameBoardView.setup(this.gameBoardMap, this.gameContainer);

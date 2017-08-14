@@ -7,8 +7,10 @@ function GameBoardMap(config) {
 }
 
 //------------------------------------------------------------------------------------------
-GameBoardMap.prototype.setup = function() {
-	this.generateRandomLevel();
+GameBoardMap.prototype.setup = function(data) {
+	if (data == undefined) {
+		this.generateRandomLevel();
+	}
 }
 
 //------------------------------------------------------------------------------------------
