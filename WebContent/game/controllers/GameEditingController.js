@@ -117,7 +117,7 @@ GameEditingController.prototype.readSingleFile = function(that) {
 		
 		console.log(": json: ", json)
 		
-		this.parentController.launchScreen(json);
+		this.parentController.launchEditingScreen(json);
 	}.bind(this);
 	
 	reader.readAsText(file);

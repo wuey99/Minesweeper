@@ -78,7 +78,7 @@ GameController.prototype.launch = function(controllerClass, data) {
 	
 	this.gameControllerToLaunch = function() {
 		this.gameController = new controllerClass();
-		this.gameController.setup(this.gameContainer, this);
+		this.gameController.setup(this.gameContainer, this, data);
 	}
 }
 
