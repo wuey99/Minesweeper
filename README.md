@@ -57,8 +57,13 @@ directory structure
 	
 known or possible bugs:
 
-1) end game explosion not working propery for difficulties >= medium
-2) traversal code may be buggy.
-3) end game feedback of where flags are placed not user-friendly.  I may look into addressing this later today.  might add aawy to toggle the flags on/off in the end-game state.
+1) end game explosion not working properly for difficulties >= medium
+2) traversal algorithm might have problems with recursion overlow with large maps, few mines, memory constrained devices
+3) end game feedback of where flags are placed not user-friendly.  I may look into addressing this later today.  might add a way to toggle the flags on/off in the end-game state.
 4) loading the same exported level data twice fails (a caching problem?)
+5) win game determination is broken.  incorrectly placed flags aren't counted against.  it's possible to win the game by flagging every possible cell.
+6) flagged cells don't correctly protect against accidentally clicking on a mine
+7) after winning, input isn't being blocked, so it's possible to "lose" after winning
+8) the menu selection cursor resets to the top position instead of the previous difficulty level selected.
+9) neighbor count should go up to 8.  right now limited to 6. 
 
