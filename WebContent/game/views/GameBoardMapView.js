@@ -17,12 +17,20 @@ GameBoardMapView.prototype.setup = function(map, gameContainer) {
 	
 	this.setupTileSprites();
 	this.setupEvents();
+	
+	this.jiffies = 0;
+	
+	this.timer = setInterval(function () {
+		this.jiffies++;
+	}.bind(this), 16);
 }
 
 //------------------------------------------------------------------------------------------
 GameBoardMapView.prototype.cleanup = function() {
 	this.leftMouseClickSignal.removeAllListeners();
 	this.rightMouseClickSignal = removeAllListeners();
+	
+	clearInterval(this.timer);
 	
 	this.tileMap.forEach(function(key) {
 		
@@ -72,6 +80,22 @@ GameBoardMapView.prototype.setupEvents = function() {
 		this.fireSignal(this.leftMouseClickSignal);
 	}.bind(this));
 	
+	this.on("touchstart", function(event) {
+		this.data = event.data;
+		
+		this.touchTime = this.jiffies;
+	}.bind(this));
+	
+	this.on("touchend", function(event) {
+//		event.stopPropagation();
+		
+		if (this.jiffies > this.touchTime + 20) {
+			this.fireTouchSignal(this.rightMouseClickSignal);			
+		} else {
+			this.fireTouchSignal(this.leftMouseClickSignal);
+		}
+	}.bind(this));
+	
 	this.on("rightclick", function(event) {
 		event.stopPropagation();
 		
@@ -85,6 +109,20 @@ GameBoardMapView.prototype.fireSignal = function(signal) {
 	
 	this.toLocal(App.getMousePos(), App.stage, point);
 	
+	var col = Math.floor(point.x / GameBoardTile.WIDTH);
+	var row = Math.floor(point.y / GameBoardTile.HEIGHT);
+
+	signal.fireSignal(point, row, col)
+}
+
+//------------------------------------------------------------------------------------------
+GameBoardMapView.prototype.fireTouchSignal = function(signal) {
+	var point = new PIXI.Point();
+	
+    var newPosition = this.data.getLocalPosition(this.parent);
+  
+    this.toLocal(newPosition, this.parent, point);
+    
 	var col = Math.floor(point.x / GameBoardTile.WIDTH);
 	var row = Math.floor(point.y / GameBoardTile.HEIGHT);
 

@@ -25,11 +25,11 @@ GameLoadingController.prototype.setupSprites = function(container, parentControl
 	    fontWeight: 'bold',
 	    fill: ['#0000ee', '#0000c0'],
 	    wordWrap: true,
-	    wordWrapWidth: App.stageWidth*3/4,
+	    wordWrapWidth: App.stageWidth*.90,
 	    align: 'center'
 	});
 	
-	this.loadingText = new PIXI.Text("Prepare to be blown up...", style);
+	this.loadingText = new PIXI.Text("Paige, prepare to be blown up...", style);
 	this.loadingText.x = 32;
 	this.loadingText.y = 32;
 	this.gameContainer.addChild(this.loadingText);
@@ -45,6 +45,12 @@ GameLoadingController.prototype.setupSprites = function(container, parentControl
 		App.boardColumns = 9;
 		App.boardDifficulty = 10;
 	}.bind(this));
+	this.easyGameText.on("touchend", function() {
+		this.cursorSprite.y = this.easyGameText.y + 16;
+		App.boardRows = 9;
+		App.boardColumns = 9;
+		App.boardDifficulty = 10;
+	}.bind(this));	
 	
 	this.mediumGameText = new PIXI.Text("Medium (15x15), 40 mines.", style);
 	this.mediumGameText.x = 64;
@@ -57,6 +63,12 @@ GameLoadingController.prototype.setupSprites = function(container, parentControl
 		App.boardColumns = 15;
 		App.boardDifficulty = 40;
 	}.bind(this));
+	this.mediumGameText.on("touchend", function() {
+		this.cursorSprite.y = this.mediumGameText.y + 16;	
+		App.boardRows = 15;
+		App.boardColumns = 15;
+		App.boardDifficulty = 40;
+	}.bind(this));
 	
 	this.hardGameText = new PIXI.Text("Hard (21x21), 90 mines.", style);
 	this.hardGameText.x = 64;
@@ -64,6 +76,12 @@ GameLoadingController.prototype.setupSprites = function(container, parentControl
 	this.hardGameText.interactive = true;
 	this.gameContainer.addChild(this.hardGameText);
 	this.hardGameText.on("click", function() {
+		this.cursorSprite.y = this.hardGameText.y + 16;		
+		App.boardRows = 21;
+		App.boardColumns = 21;
+		App.boardDifficulty = 90;
+	}.bind(this));
+	this.hardGameText.on("touchend", function() {
 		this.cursorSprite.y = this.hardGameText.y + 16;		
 		App.boardRows = 21;
 		App.boardColumns = 21;
@@ -84,6 +102,9 @@ GameLoadingController.prototype.setupSprites = function(container, parentControl
 	this.playGameText.on("click", function() {
 		this.parentController.launchPlayingScreen();		
 	}.bind(this));	
+	this.playGameText.on("touchend", function() {
+		this.parentController.launchPlayingScreen();		
+	}.bind(this));	
 	
 	this.editGameText = new PIXI.Text("Edit", style);
 	this.editGameText.x = 320;
@@ -93,7 +114,10 @@ GameLoadingController.prototype.setupSprites = function(container, parentControl
 	this.editGameText.on("click", function() {
 		this.parentController.launchEditingScreen();			
 	}.bind(this));	
-	
+	this.editGameText.on("touchend", function() {
+		this.parentController.launchEditingScreen();			
+	}.bind(this));		
+
 	this.loadGameText = new PIXI.Text("Load", style);
 	this.loadGameText.x = 520;
 	this.loadGameText.y = 320;

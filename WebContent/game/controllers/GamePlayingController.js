@@ -82,6 +82,11 @@ GamePlayingController.prototype.createSprites = function() {
 		
 		this.parentController.launchLoadingScreen();
 	}.bind(this));
+	this.quitGameButton.on("touchend", function() {
+		console.log(": quit: ");
+		
+		this.parentController.launchLoadingScreen();
+	}.bind(this));
 }
 
 //------------------------------------------------------------------------------------------
