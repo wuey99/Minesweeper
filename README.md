@@ -1,5 +1,7 @@
 "# Minesweeper" 
 
+Written in Javascript ES5 using the Pixi.JS framework
+
 playable build can be found at:
 
 http://www.kablooey.com:8080/Minesweeper/
