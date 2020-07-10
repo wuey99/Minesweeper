@@ -48,11 +48,11 @@ directory structure
 
 	+ lib
 	
-		Dict.js // helper library that provides something AS3 dictionary support
+		Dict.js // helper library that provides something similar to AS3 Dictionary support
 		
 		FileSaver.js // not used (attempted to support native file saving but gave up)
 		
-		Signal.js // helper libary that implements observer pattern
+		Signal.js // helper libary that implements Signals/Slots (observer pattern)
 		
 	index.jsp // main index file.  .jsp file because the server i use is tomcat-based
 	
